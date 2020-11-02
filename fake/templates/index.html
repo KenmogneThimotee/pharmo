@@ -1,0 +1,324 @@
+{% load crispy_forms_tags %}
+{% load InterToTime %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Oren Video Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="icon" href="images/Favicon.png">
+<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/flatpickr.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/fontello.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/fontello-codes.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/thumbs-embedded.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/color.css' %}">
+
+</head>
+
+
+<body>
+
+
+
+	<div class="wrapper hp_1">
+
+		<header>
+			<div class="top_bar">
+				<div class="container">
+					<div class="top_header_content">
+						<div class="menu_logo">
+							<a href="#" title="" class="menu">
+								<i class="icon-menu"></i>
+							</a>
+							<a href="index.html" title="" class="logo">
+								<img src="images/logo.png" alt="">
+							</a>
+						</div><!--menu_logo end-->
+						<div class="search_form">
+							<form>
+								<input type="text" name="search" placeholder="Search Videos">
+								<button type="submit">
+									<i class="icon-search"></i>
+								</button>
+							</form>
+						</div><!--search_form end-->
+						{% if user is not None  %}
+						<ul class="controls-lv">
+							
+							<li class="user-log">
+							
+								<div class="user-ac-img">
+									<img src="" alt="">
+								</div>
+								<div class="account-menu">
+									<h4> <span class="usr-status">{{ user.username }}</span></h4>
+									<div class="sd_menu">
+										<ul class="mm_menu">
+											<li>
+												<span>
+													<i class="icon-user"></i>
+												</span>
+												<a href="{% url 'channel' user.id %}" title="">My Channel</a>
+											
+											</li>
+											
+											<li>
+												<span>
+													<i class="icon-settings"></i>
+												</span>
+												<a href="#" title="">Settings</a>
+											</li>
+											<li>
+												<span>
+													<i class="icon-logout"></i>
+												</span>
+												<a href="{% url 'signoutView' %}" title="">Sign out</a>
+											</li>
+										</ul>
+									</div><!--sd_menu end-->
+								
+								
+								</div>
+							</li>
+							<li>
+								<a href="{% url 'upload' %}" title="" class="btn-default">Upload</a>
+							</li>
+						
+						</ul><!--controls-lv end-->
+						{% endif %}
+						<div class="clearfix"></div>
+					</div><!--top_header_content end-->
+				</div>
+			</div><!--header_content end-->
+			<div class="btm_bar">
+				<div class="container">
+					<div class="btm_bar_content">
+						<nav>
+							<ul>
+								<li><a href="{% url 'BrowseChannel' %}" title="">Channels</a></li>
+							</ul>
+						</nav><!--navigation end-->
+						<ul class="shr_links">
+							<li>
+								<h3>Go to : </h3>
+							</li>
+							
+							<li>
+								<button data-toggle="tooltip" data-placement="top" title="Playlist">
+								  <i class="icon-playlist"></i>
+								</button>
+							</li>
+							<li>
+								<button data-toggle="tooltip" data-placement="top" title="History">
+								<a href="{% url 'history' %}">
+								  <i class="icon-history"></i>
+								  </a>
+								</button>
+							</li>
+						</ul><!--shr_links end-->
+						<ul class="vid_thums">
+							
+				
+						</ul><!--vid_status end-->
+						<div class="clearfix"></div>
+					</div><!--btm_bar_content end-->
+				</div>
+			</div><!--btm_bar end-->
+		</header><!--header end-->
+
+		<div class="side_menu">
+			<div class="form_dvv">
+				<a href="#" title="" class="login_form_show">Sign in</a>
+			</div>
+			<div class="sd_menu">
+				<ul class="mm_menu">
+					<li>
+						<span>
+							<i class="icon-home"></i>
+						</span>
+						<a href="{% url 'home' %}" title="">Home</a>
+					</li>
+				
+					<li>
+						<span>
+							<i class="icon-subscriptions"></i>
+						</span>
+						<a href="{% url 'subscription' %}" title="">Subscriptions</a>
+					</li>
+				</ul>
+			</div><!--sd_menu end-->
+			<div class="sd_menu">
+				<h3>Library</h3>
+				<ul class="mm_menu">
+					<li>
+						<span>
+							<i class="icon-history"></i>
+						</span>
+						<a href="{% url 'history' %}" title="">History</a>
+					</li>
+					
+				
+					<li>
+						<span>
+							<i class="icon-like"></i>
+						</span>
+						<a href="#" title="">Liked Videos</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-play_list"></i>
+						</span>
+						<a href="#" title="">Playlist</a>
+					</li>
+				</ul>
+			</div><!--sd_menu end-->
+			<div class="sd_menu subs_lst">
+				<h3>Subscriptions</h3>
+				<ul class="mm_menu">
+				{% for abonnement in user.abonne.all %}
+					<li>
+						<span class="usr_name">
+							<img src={{ abonnement.profilePicture.url }} alt="">
+						</span>
+						<a href="#" title="">{{ abonnement.username }}</a>
+						<small>{{ abonnement.video_set.all | length }}</small>
+					</li>
+				</ul>
+				{% endfor %}
+				<!--<a href="#" title="" class="more-ch"><i class="icon-arrow_below"></i> Show 14 more</a>
+				-->
+			</div><!--sd_menu end-->
+			<div class="sd_menu">
+				<ul class="mm_menu">
+					<li>
+						<span>
+							<i class="icon-settings"></i>
+						</span>
+						<a href="#" title="">Settings</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-flag"></i>
+						</span>
+						<a href="#" title="">Report history</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-logout"></i>
+						</span>
+						<a href="#" title="">Sign out</a>
+					</li>
+				</ul>
+			</div><!--sd_menu end-->
+			<div class="sd_menu m_linkz">
+				<ul class="mm_menu">
+					<li><a href="#">About</a></li>
+					<li><a href="#">Community Rules </a></li>
+					<li><a href="#">Privacy</a></li>
+					<li><a href="#">Terms</a></li>
+					<li><a href="#">Contracts </a></li>
+					<li><a href="#">FAQ</a></li>
+				</ul>
+				<span>azyrusthemes</span>
+			</div><!--sd_menu end-->
+			<div class="sd_menu bb-0">
+				<ul class="social_links">
+					<li>
+						<a href="#" title="">
+							<i class="icon-facebook-official"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="">
+							<i class="icon-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="">
+							<i class="icon-instagram"></i>
+						</a>
+					</li>
+				</ul><!--social_links end-->
+			</div><!--sd_menu end-->
+			<div class="dd_menu"></div>
+		</div><!--side_menu end-->
+
+
+		{% block content %}
+		<section class="vds-main">
+			<div class="vidz-row">
+				<div class="container">
+					
+					</div><!--vidz_videos end-->
+				</div>
+			</div><!--vidz-row end-->
+			<div class="vidz-row">
+				<div class="container">
+					<div class="vidz_sec">
+						<h3>Updates from Subscriptions</h3>
+						<a href="#" title="" class="view-btn">View all</a>
+						<div class="vidz_list">
+							<div class="row">
+
+							{% for video in videos %}
+								<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
+									<div class="videoo">	
+										<div class="vid_thumbainl">
+											<a href="{% url 'video' video.id %}" title="">
+												<img src="media/{{ video.coverImage }}" alt="" class="img-fluid">
+												<span class="vid-time">{{ video.duree | stime }}</span>
+												<span class="watch_later">
+													<i class="icon-watch_later_fill"></i>
+												</span>
+											</a>	
+										</div><!--vid_thumbnail end-->
+										<div class="video_info">
+											<h3><a href="single_video_page.html" title="">{{ video.nom }}</a></h3>
+											<h4><a href="Single_Channel_Home.html" title="">{{ video.owner.username }}</a> </h4>
+											<span>{{ video.user_vue | length }} views .<small class="posted_dt">Il y'a {{ video.date | timesince}}</small></span>
+										</div>
+									</div><!--videoo end-->
+								</div>
+
+							{% endfor %}
+							</div>
+						</div><!--vidz_list end-->
+					</div><!--vidz_videos end-->
+				</div>
+			</div><!--vidz-row end-->
+		</section><!--vds-main end-->
+
+		{% endblock content %}
+
+		<section class="more_items_sec text-center">
+			<div class="container">
+			</div>
+		</section><!--more_items_sec end-->
+
+	</div><!--wrapper end-->
+
+
+
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/flatpickr.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+
+{% block javascript %}
+{% endblock javascript %}
+
+
+
+</body>
+
+</html>

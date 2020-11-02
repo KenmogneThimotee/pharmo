@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+	<section class="upload-videooz">
+		<form action="{% url 'upload' %}" method='POST' enctype="multipart/form-data">
+			{% csrf_token %}
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="video-file">
+								<i class="icon-graphics_05"></i>
+								<!-- <form> -->	
+									<div class="form-group">
+										  <label for="file-upload">
+											Upload Video
+										  </label>
+										  <input type="file"
+											class="form-control btn btn-dark" name="video" id="file-upload" aria-describedby="helpId" placeholder="">
+									</div>
+								<!-- </form> -->
+							</div><!--video-file end-->
+						</div>
+						<div class="col-lg-6">
+			<section class="upload-detail">
+				<section class="vid-title-sec">
+					<div class="container">
+						
+							<div class="vid-title">
+								<h2 class="title-hd">Titre </h2>
+								<div class="form_field">
+								<div class="form-group">
+								  <input type="text"
+									class="form-control" name="nom" id="" aria-describedby="helpId" placeholder="">
+								</div>
+								</div>
+							</div><!--vid-title-->
+							<div class="abt-vidz-pr">
+								<h2 class="title-hd"> Description </h2>
+								<div class="form_field">
+									<div class="form-group">
+									  <textarea class="form-control" name="description" id="" rows="3"></textarea>
+									</div>
+								</div>
+							</div><!--abt-vidz-->
+							<div class="vid-title">
+								<div class="form-group">
+									<label for="image">Image de couverture</label>
+								  <input type="file"
+									class="form-control btn btn-dark" name="coverImage" id="image" aria-describedby="helpId" placeholder="">
+								</div>
+							</div><!--vid-title-->
+							<div class="category">
+								<div class="category-typ">
+									<div class="clearfix"></div>
+									<div class="btn-sbmit">
+										<button type="submit">Save</button>
+									</div><!--btn-sbmit end-->
+								</div><!--category-typ-->
+							</div><!--Category-->
+						
+					</div>
+				</section><!--vid-title-sec-->
+			</section><!--upload-detail end-->
+		</form>
+	</section><!--upload-videooz end-->
+
+{% endblock content %}

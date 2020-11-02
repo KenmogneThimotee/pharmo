@@ -1,0 +1,229 @@
+{% extends 'index.html' %}
+{% load InterToTime %}
+
+{% block content %}
+
+
+	<section class="channel-cover">
+		<img src={{ user.baniere.url }} alt="">
+	</section><!--channel-cover end-->
+
+	<section class="videso_section">
+		<div class="info-pr-sec">
+			<div class="container">
+				<div class="vcp_inf cr">
+					<span class="vc_hd">
+						<img src={{ user.profilePicture.url }} alt="">
+					</span>
+					<div class="vc_info pr">
+						<h4>{{ user.username }} <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+						<span>{{ user.abonne_set.all | length }} subscribers</span>
+					</div>
+				</div><!--vcp_inf end-->
+				<ul class="chan_cantrz">
+					<li>
+						<a href="#" title="" class="subscribe">Subscribe <strong>{{ user.abonne.all | length }}</strong></a>
+					</li>
+				</ul><!--chan_cantrz end-->
+				<div class="search_form">
+					<form>
+						<input type="text" name="search" placeholder="Search Videos">
+						<button type="submit">
+							<i class="icon-search"></i>
+						</button>
+					</form>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div><!--info-pr-sec end-->
+		<div class="history-lst tbY">
+			<div class="container">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link" id="videos_taab" data-toggle="tab" href="#vvideo_tabz" role="tab" aria-controls="videos_taab" aria-selected="false">Videos </a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="playlist-tab" data-toggle="tab" href="#playlist_tab" role="tab" aria-controls="playlist-tab" aria-selected="false">Playlist</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link active" id="channels-tab" data-toggle="tab" href="#channels_tab" role="tab" aria-controls="channels-tab" aria-selected="false">Channels</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" id="about-tab" data-toggle="tab" href="#about_tab" role="tab" aria-controls="about-tab" aria-selected="false">About</a>
+				  </li>
+				</ul><!--nav-tabs end-->
+				<div class="clearfix"></div>
+			</div>
+		</div><!--history-lst end-->
+		<div class="tab-content p-0" id="myTabContent">
+		  	<div class="tab-pane" id="vvideo_tabz" role="tabpanel" aria-labelledby="videos_taab">
+		  		<div class="videso_tb_details">
+		  			<div class="container">
+			  			<div class="vidz_sec">
+							<h3>Uploads</h3>
+							<a href="#" title=""><i class="icon-sort_by"></i>Sort By</a>
+							<div class="clearfix"></div>
+							<div class="vidz_list">
+								<div class="row">
+								{% for video in user.video_set.all %}
+									<div class="col-lg-3 col-md-3 col-sm-6 col-6 full_wdth">
+										<div class="videoo">
+											<div class="vid_thumbainl">
+												<a href="{% url 'video' video.id%}" title="">
+													<img src={{ video.coverImage.url }} alt="">
+													<span class="vid-time">{{ video.duree | stime }}</span>
+													<span class="watch_later">
+														<i class="icon-watch_later_fill"></i>
+													</span>
+												</a>	
+											</div><!--vid_thumbnail end-->
+											<div class="video_info">
+												<h3><a href="single_video_page.html" title="">{{ video.nom }}</a></h3>
+												<h4><a href="#" title="">{{ user.username }}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+												<span>{{ video.user_vue.all | length }} views .<small class="posted_dt">{{ video.date | timesince }} ago</small></span>
+											</div>
+										</div><!--videoo end-->
+									</div>
+								{% endfor %}
+								</div>
+							</div><!--vidz_list end-->
+						</div><!--vidz_videos end-->
+					</div>
+		  		</div><!--videso_tb_details end-->
+		  	</div>
+		  	<div class="tab-pane fade" id="playlist_tab" role="tabpanel" aria-labelledby="playlist-tab">
+		  		<div class="playlist_tab">
+		  			<div class="viddz">
+						<div class="container">
+						{% for playlist in user.playlist_set.all %}
+							<div class="vidz_sec">
+								<h3>{{ playlist.nom  }}</h3>
+								<a href="{% url 'playlist' playlist.id %}" title="">Read All</a>
+								<div class="clearfix"></div>
+								<div class="vidz_list">
+									<div class="row">
+									{% for vid in playlist.video.all %}
+										<div class="col-lg-3 col-md-3 col-sm-6 col-6 full_wdth">
+											<div class="videoo">
+												<div class="vid_thumbainl">
+													<a href="{% url 'video' vid.id %}" title="">
+														<img src={{ vid.coverImage.url }} alt="">
+														<span class="vid-time">{{ vid.duree | stime }}</span>
+														<span class="watch_later">
+															<i class="icon-watch_later_fill"></i>
+														</span>
+													</a>	
+												</div><!--vid_thumbnail end-->
+												<div class="video_info">
+													<h3><a href="single_video_page.html" title="">{{ vid.nom }}</a></h3>
+													<h4><a href="{% url 'channel' vid.owner.id %}" title="">{{ vid.owner.username }}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+													<span>{{ vid.user_vue.all | length }} views .<small class="posted_dt">{{ vid.date | timesince }} ago</small></span>
+												</div>
+											</div><!--videoo end-->
+										</div>
+									{% endfor %}
+									</div>
+								</div><!--vidz_list end-->
+							</div><!--vidz_videos end-->
+						{% endfor %}
+						</div>
+					</div><!--viddz end-->
+				</div><!--home_tb_details end-->
+		  	</div>
+		  	<div class="tab-pane fade show active" id="channels_tab" role="tabpanel" aria-labelledby="channels-tab">
+		  		<div class="container">
+		  			<div class="browse_catgs">
+						<div class="brws-head">
+							<h3>Featured Channels</h3>
+							<div class="clearfix"></div>
+							<div class="row">
+							{% for channel in channels %}
+								<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+									<div class="videoo">
+										<div class="vid_thumbainl">
+											<a href="{% url 'channel' channel.id %}" title="">
+												<img src={{ channel.baniere.url }} alt="">
+											</a>	
+										</div><!--vid_thumbnail end-->
+										<div class="video_info">
+											<div class="vid_thumb">
+												<img src={{ channel.profilePicture.url }} alt="">
+											</div>
+											<h4><a href="{% url 'channel' channel.id %}" title="">{{ channel.username }}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+											<span>{{ channel.abonne.all | length }} Subscribers . {{ channel.video_set.all | length }} Videos {{ channel.vue.all | length }} views</span>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							</div>
+						</div><!--brws-head end-->
+					</div><!--browse_catgs end-->
+				</div>
+		  	</div>
+		  	<div class="tab-pane fade" id="about_tab" role="tabpanel" aria-labelledby="about-tab">
+		  		<div class="about_tab_content">
+		  			<div class="container">
+		  				<div class="description">
+							<div class="row">
+								<div class="col-lg-8">
+									<div class="decp_cotnet">
+										<h2 class="ab-fd">Description </h2>
+										<p>Welcome to the official Saturday Night Live channel on YouTube!  Here you will find your favorite sketches, behind the scenes clips and web exclusives, featuring all your favorite hosts and cast members.  Check out more SNL at http://www.nbc.com/</p>
+									</div><!--abt-founder end-->
+									<div class="link-pr">
+										<h2 class="ab-fd">Links </h2>
+										<ul class="csl-link-1">
+											<li><a href="#" title="">SNL on NBC</a></li>
+											<li><a href="#" title=""> Facebook</a></li>
+											<li><a href="#" title="">Twitter</a></li>
+										</ul>
+										<ul class="csl-link-2">
+											<li><a href="#" title="">Instagram</a></li>
+											<li><a href="#" title="">Subscribe to SNL on Oren</a></li>
+											<li><a href="#" title="">Google+</a></li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									<div class="link-pr">
+										<h2 class="ab-fd">Business enquiries </h2>
+										<ul>
+											<li><a href="mailto:example@example.com" title="">sample@sample.com</a></li>
+											<li><a href="#" title="">scerebro@gmail.com</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="stats">
+										<h2 class="ab-fd">Stats</h2>
+										<ul>
+											<li>Joined Jul 2019 </li>
+											<li>3,741,400,119 views</li>
+											<li>25,345,348 subscribers</li>
+											<li>729 videos</li>
+										</ul>
+									</div><!--stats end-->
+									<div class="flagg">
+										<ul>
+											<li>
+												<a href="#" title="">
+													<i class="icon-flag"></i>
+												</a>		
+											</li>
+											<li>
+												<a href="#" title="">
+													<i class="icon-message"></i>
+												</a>		
+											</li>
+										</ul>
+									</div><!--flagg end-->
+								</div>
+							</div>
+						</div>
+		  			</div>
+		  		</div><!--about_tab_content end-->
+		  	</div>
+		</div>
+	</section><!--Featured Videos end-->
+
+
+{% endblock content %}

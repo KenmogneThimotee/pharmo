@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+
+	<section class="banner-section p120">
+		<div class="container">
+			<div class="banner-text">
+				<h2>Register</h2>
+				<p>Please Register to have access to all videos and many more.</p>
+			</div><!--banner-text end-->
+		</div>
+	</section><!--banner-section end-->
+
+	<section class="form_popup">
+		
+		<div class="signup_form" id="signup_form">
+		 	<div class="hd-lg">
+		 		<img src="images/logo.png" alt="">
+		 		<span>Register your Oren account</span>
+		 	</div><!--hd-lg end-->
+			<div class="user-account-pr">
+				<form action="{% url 'signup' %}" method='POST' enctype="multipart/form-data">
+
+					{% csrf_token %}
+					<div class="input-sec">
+						{{ form.first_name | as_crispy_field }}
+					</div>
+					<div class="input-sec">
+						{{ form.last_name | as_crispy_field }}
+					</div>
+					<div class="input-sec mgb25">
+						{{ form.username | as_crispy_field }}
+					</div>
+					<div class="input-sec">
+						{{ form.profilePicture | as_crispy_field }}
+					</div>
+					<div class="input-sec">
+						{{ form.baniere | as_crispy_field }}
+					</div>
+					<div class="input-sec">
+						{{ form.password1 | as_crispy_field}}
+					</div>
+					<div class="input-sec">
+						{{ form.password2 | as_crispy_field}}
+					</div>
+					<div class="chekbox-lg">
+						<ul>
+							<li>
+								<label>
+									<input type="radio" name="sexe" value="M">
+									<b class="checkmark"> </b>
+									<span>Masculin</span>
+								</label>		
+							</li>
+							<li>
+								<label>
+									<input type="radio" name="sexe" value="F">
+									<b class="checkmark"> </b>
+									<span>Feminin</span>
+								</label>		
+							</li>
+						</ul>
+					</div>
+					<div class="input-sec mb-0">
+						<button type="submit">Signup</button>
+					</div><!--input-sec end-->
+				</form>
+				<div class="form-text">
+					<p>By sIgning up you agree to Oren’s <a href="#" title="">Terms of Service</a> and <a href="#" title="">Privacy Policy</a> </p>
+				</div>
+			</div><!--user-account end--->
+			<div class="fr-ps">
+				<h1>Already have an account?<a href="login.html" title="" class="show_signup"> Login here.</a></h1>
+			</div><!--fr-ps end-->
+		</div><!--login end--->
+
+	</section><!--form_popup end-->
+
+{% endblock content %}

@@ -1,0 +1,221 @@
+{% extends 'index.html' %}
+{% load InterToTime %}
+{% load static %}
+
+{% block content %}
+
+	<section class="mn-sec full_wdth_single_video">
+		<div class="container">
+			<div class="row gap_remove">
+				<div class="col-lg-9">
+					<div class="vid-pr">
+						<div class="embed-responsive embed-responsive-16by9">
+  							<iframe class="embed-responsive-item" src="" allowfullscreen id="frame"></iframe>
+						</div>
+					</div><!--vid-pr end-->
+					
+					<span class="badge badge-dark" id="prev">prev</span>
+					<span class="badge badge-dark" id="next">next </span>
+				</div>
+				<div class="col-lg-3">
+					<div class="playlist_view">
+						<div class="playlist_hd">
+							<h3>Trending Music - <span>2 / 76</span></h3>
+							<ul>
+								<li>
+									<a href="#" title="">
+										<i class="icon-add_to_playlist"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" title="">
+										<i class="icon-like"></i>
+									</a>
+								</li>
+							</ul>
+							<div class="clearfix"></div>
+						</div><!--playlist_hd end-->
+						<div class="clearfix"></div>
+						<ul class="videos_lizt mCustomScrollbar" data-mcs-theme="dark" id="playlist_list">
+						{% for video in videos %}
+							<li>
+								<div class="vidz_row">
+									<span class="vid_num">1</span>
+									<div class="vidz_img">
+										<a href="#" title="">
+											<img src={{ video.coverImage.url }} alt="">
+										</a>
+										<span class="vid-time">{{ video.duree | stime }}</span>
+										<span class="watch_later">
+											<i class="icon-watch_later_fill"></i>
+										</span>
+									</div><!--vidz_img end-->
+									<div class="video_info">
+										<h3><a href="#" title="">{{ video.nom }}</a></h3>
+										<h4><a href="#" title="">{{ video.owner.username }}</a></h4>
+									</div>
+								</div><!--vidz_row end-->
+							</li>
+						{% endfor %}
+						</ul><!--videos_lizt end-->
+					</div><!--playlist_view end-->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="mn-vid-sc single_video">
+						<div class="vid-1">
+							<div class="vid-info">
+								<h3>Kingdom Come: Deliverance Funny Moments and Fails Compilation</h3>
+								<div class="info-pr">
+									<span>60,723,169 views</span>
+									<ul class="pr_links">
+										<li>
+											<button data-toggle="tooltip" data-placement="top" title="I like this">
+												<i class="icon-thumbs_up_fill"></i>
+											</button>
+											<span>388K</span>
+										</li>
+										<li>
+											<button data-toggle="tooltip" data-placement="top" title="I dislike this">
+												<i class="icon-thumbs_down_fill"></i>
+											</button>
+											<span>28K</span>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div><!--info-pr end-->
+							</div><!--vid-info end-->
+						</div><!--vid-1 end-->
+						<div class="abt-mk">
+							<div class="info-pr-sec">
+								<div class="vcp_inf cr">
+									<div class="vc_hd">
+										<img src="images/resources/th5.png" alt="">
+									</div>
+									<div class="vc_info pr">
+										<h4><a href="#" title="">ScereBro</a></h4>
+										<span>Published on Oct 22, 2017</span>
+									</div>
+								</div><!--vcp_inf end-->							
+								<ul class="chan_cantrz">
+									<li>
+										<a href="#" title="" class="subscribe">Subscribe <strong>13M</strong></a>
+									</li>
+								</ul><!--chan_cantrz end-->
+								<ul class="df-list">
+									<li>
+										<button data-toggle="tooltip" data-placement="top" title="Add to playlist">
+											<i class="icon-add_to_playlist"></i>
+										</button>
+									</li>
+								</ul><!--df-list end-->
+								<div class="clearfix"></div>
+							</div>
+							<div class="clearfix"></div>
+							<div class="about-ch-sec">
+								<div class="abt-rw">
+									<h4>Cast:</h4>
+									<ul>
+										<li><span>Nathan Drake</span></li>
+										<li><span>Victor Sullivan </span></li>
+										<li><span>Sam Drake </span></li>
+										<li><span>Elena Fisher</span></li>
+									</ul>
+								</div>
+							</div><!--about-ch-sec end-->
+						</div><!--abt-mk end-->
+						<div class="cmt-bx">
+							<ul class="cmt-pr">
+								<li><span>18,386</span> Comments</li>
+								<li>
+									<span><i class="icon-sort_by"></i><a href="#" title="">Sort By</a></span>
+								</li>
+							</ul>
+							<div class="clearfix"></div>
+							<div class="clearfix"></div>
+							<div class="vcp_inf pc">
+								<div class="vc_hd">
+									<img src="images/resources/th1.png" alt="">
+								</div>
+								<form>
+									<input type="text" placeholder="Add a public comment">
+									<button type="submit">Comment</button>
+								</form>
+								<div class="clearfix"></div>
+								<div class="rt-cmt">
+									<a href="#" title="">
+										<i class="icon-cancel"></i>
+									</a>
+									<div class="clearfix"></div>
+								</div><!--vcp_inf end-->
+							</div><!--cmt-bx end-->
+							<ul class="cmn-lst">
+								<li>
+									<div class="vcp_inf">
+										<div class="vc_hd">
+											<img src="images/resources/th3.png" alt="">
+										</div>
+										<div class="coments">
+											<h2>Doge <small class="posted_dt"> . 2 hours ago</small></h2>
+											<p>Depressive Alcoholics are my favorite superheroes </p>
+											<ul class="cmn-i">
+												<li>
+													<a href="#" title="">
+														<i class="icon-thumbs_up"></i>
+													</a>
+													<span>61</span>
+												</li>
+												<li>
+													<a href="#" title="">
+														<i class="icon-thumbs_down"></i>
+													</a>
+													<span>3</span>
+												</li>
+											</ul>
+											<a href="#" title="">View all 26 replies</a>
+										</div><!--coments end-->
+									</div><!--vcp_inf end-->
+								</li>
+							</ul><!--comment list end-->
+						</div>
+					</div><!--mn-vid-sc end--->
+				</div><!---col-lg-9 end-->
+				<div class="col-lg-3">
+					<div class="sidebar">
+						<div class="vidz-prt">
+							<h2 class="sm-vidz">Similar Videos</h2>
+							<h3 class="aut-vid">
+								<span>Autoplay </span>
+								<label class="switch">
+									<input type="checkbox">
+								  	<b class="slider round"></b>
+								</label> 
+							</h3>
+							<div class="clearfix"></div>
+						</div><!--vidz-prt end-->
+						<div class="videoo-list-ab">
+							<div class="videoo">
+								<div class="vid_thumbainl">
+									<a href="single_video_page.html" title="">
+										<img src="images/resources/vide1.png" alt="">
+										<span class="vid-time">10:21</span>
+										<span class="watch_later">
+											<i class="icon-watch_later_fill"></i>
+										</span>
+									</a>	
+								</div><!--vid_thumbnail end-->
+								<div class="video_info">
+									<h3><a href="#" title="">Kingdom Come: Deliverance Funny Moments and Fails</a></h3>
+									<h4><a href="#" title="">newfox media</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+									<span>686K views .<small class="posted_dt">1 week ago</small></span>
+								</div>
+							</div><!--videoo end-->
+						</div><!--videoo-list-ab end-->
+					</div><!--side-bar end-->
+				</div>
+			</div>
+		</div>
+	</section><!--mn-sec end-->
+
+{% endblock content %}

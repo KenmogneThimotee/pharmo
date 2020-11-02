@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+<section class="browse-sec">
+		<div class="container">
+			<div class="browse_catgs">
+				<div class="brws-head">
+					<h3>Most Popular</h3>
+					<a href="#" title="">View more</a>
+					<div class="clearfix"></div>
+					<div class="row">
+					{% for us in user_list %}
+						<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+							<div class="videoo">
+								<div class="vid_thumbainl">
+									<a href="{% url 'channel' us.id %}" title="">
+										<img src={{ us.baniere.url }} alt="">
+									</a>	
+								</div><!--vid_thumbnail end-->
+								<div class="video_info">
+									<div class="vid_thumb">
+										<img src={{ us.profilePicture.url }} alt="">
+									</div>
+									<h4><a href="Single_Channel_Home.html" title="">{{ us.username }}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+									<span>{{ us.abonne.all | length }} Subscribers . {{ us.video_set.all | length }} Videos {{ us.vue.all | length }} views</span>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					</div>
+				</div><!--brws-head end-->
+			</div><!--</div> end-->
+		</div>
+	</section><!--browse-sec end-->
+
+{% endblock content %}

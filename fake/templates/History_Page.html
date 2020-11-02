@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load InterToTime %}
+
+
+{% block content %}
+
+<section class="ab-history">
+		<div class="history-lst">
+			<div class="container">
+				<div class="history-hd-head">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  <li class="nav-item">
+					    <a class="nav-link active" id="watch_history_tab" data-toggle="tab" href="#watch_history" role="tab" aria-controls="watch_history_tab" aria-selected="true">Watch history</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" id="search_history_tab" data-toggle="tab" href="#search_history" role="tab" aria-controls="search_history_tab" aria-selected="false">Search history </a>
+					  </li>
+					</ul><!--nav-tabs end-->
+					<a href="#" title="" class="clear-history">
+						<i class="icon-cancel"></i>
+						Clear all search history
+					</a>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="watch_history" role="tabpanel" aria-labelledby="watch_history_tab">
+				{% for video in video_list %}
+					<div class="tabs_lzt">
+						<div class="tab-history">
+							<div class="videoo">
+								<div class="vid_thumbainl ms">
+									<a href="#" title="">
+										<img src={{ video.coverImage.url }} alt="">
+										<span class="vid-time">{{ video.duree | stime }}</span>
+										<span class="watch_later">
+											<i class="icon-watch_later_fill"></i>
+										</span>
+									</a>	
+								</div><!--vid_thumbnail end-->
+								<div class="video_info ms">
+									<h3><a href="single_video_page.html" title="">{{ video.nom }}</a></h3>
+									<h4><a href="Single_Channel_Playlist.html" title="">{{ video.owner.username }}</a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+									<span>{{ video.owner.vue.all | length }} views .<small class="posted_dt">{{ video.date | timesince }} ago</small></span>
+								</div>
+								<a href="#" title="" class="delete-video">
+									<i class="icon-cancel"></i>
+								</a>
+								<div class="clearfix"></div>
+							</div><!--videoo end-->
+						</div><!--tab-history end-->
+					</div><!--tabs_lz end-->
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section><!--ab-history end-->
+
+{% endblock content %}
