@@ -18,11 +18,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('fake.urls')),
     path('api/',include('api.urls')),
-    path('auth/',include('authApp.urls'))
+    path('auth/',include('authApp.urls')),
+    path(r'', include('drf_autodocs.urls')),
 ]
 
 if settings.DEBUG:

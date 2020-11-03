@@ -22,6 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+#SECRET_KEY = 'ose7tc@ktkk^4ggt4-92m!1_ka81r48ai9+_f@2lk3ej&ki7xu'
+
+
+
 SECRET_KEY = 'ose7tc@ktkk^4ggt4-92m!1_ka81r48ai9+_f@2lk3ej&ki7xu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -47,10 +51,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'drf_autodocs',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -159,11 +165,12 @@ STATICFILE_DIRS = [os.path.join(BASE_DIR, 'fake/static/')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/') 
 
+"""
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
     )
-}
+}"""
 
