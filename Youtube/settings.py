@@ -64,6 +64,8 @@ MIDDLEWARE = [
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         #'rest_framework.authentication.BasicAuthentication',
