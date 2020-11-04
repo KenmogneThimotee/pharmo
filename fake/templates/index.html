@@ -65,8 +65,9 @@
 												<span>
 													<i class="icon-user"></i>
 												</span>
+												{% if not user %}
 												<a href="{% url 'channel' user.id %}" title="">My Channel</a>
-											
+												{% endif %}
 											</li>
 											
 											<li>

@@ -24,7 +24,6 @@ urlpatterns = [
     path('', include('fake.urls')),
     path('api/',include('api.urls')),
     path('auth/',include('authApp.urls')),
-    path(r'', include('drf_autodocs.urls')),
 ]
 
 if settings.DEBUG:
