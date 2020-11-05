@@ -91,8 +91,24 @@ class VideoView(APIView):
 
 class CommentaireView(APIView):
 
+    """
+    The comment !
+
+    id:Id video
+    """
 
     def get(self, request):
+        """
+        Parameters
+        ----------
+        name : str
+            The name of the animal
+        sound : str
+            The sound the animal makes
+        num_legs : int, optional
+            The number of legs the animal (default is 4)
+        """
+
         idvideo = request.GET['id']
         video = Video.objects.get(id=idvideo)
 

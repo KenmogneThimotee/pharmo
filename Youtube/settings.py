@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 
 
@@ -26,6 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 SECRET_KEY = 'ose7tc@ktkk^4ggt4-92m!1_ka81r48ai9+_f@2lk3ej&ki7xu'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -118,6 +120,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 
